@@ -1,0 +1,171 @@
+================================================================================
+                HƯỚNG DẪN SỬ DỤNG QUIZ GAME MULTIPLAYER
+================================================================================
+
+🎮 HỆ THỐNG QUIZ GAME TƯƠNG TÁC REALTIME
+   - Cho phép Admin tạo phòng và chia sẻ link
+   - Người chơi tham gia và làm quiz theo thời gian thực
+   - Admin theo dõi tiến trình và lựa chọn của người chơi
+
+================================================================================
+                        CÁCH CÀI ĐẶT VÀ CHẠY
+================================================================================
+
+1. CÀI ĐẶT DEPENDENCIES:
+   -------------------------
+   npm install
+
+
+2. KHỞI ĐỘNG SERVER:
+   -------------------------
+   npm start
+
+   Server sẽ chạy tại: http://localhost:3000
+
+
+3. MỞ TRÌNH DUYỆT:
+   -------------------------
+   Mở: http://localhost:3000
+
+
+================================================================================
+                            HƯỚNG DẪN SỬ DỤNG
+================================================================================
+
+📋 CHO ADMIN/HOST:
+------------------
+1. Truy cập http://localhost:3000 và chọn "Admin / Host"
+2. Click "Tạo phòng mới"
+3. Copy link hoặc mã phòng (ví dụ: ROOM-ABC123)
+4. Chia sẻ link cho người chơi
+5. Khi có người chơi, click "Bắt đầu game"
+6. Click "Câu hỏi tiếp theo" để chuyển giai đoạn
+7. Xem "Xem tiến trình" để theo dõi
+
+📋 CHO NGƯỜI CHƠI:
+------------------
+1. Nhận link từ admin (ví dụ: http://localhost:3000/player.html?room=ROOM-ABC123)
+2. Nhập tên của bạn
+3. Click "Tham gia phòng"
+4. Chờ admin bắt đầu game
+5. Đọc câu hỏi và chọn đáp án
+6. Click "Xác nhận lựa chọn"
+7. Chờ admin chuyển câu tiếp theo
+
+📋 SINGLE PLAYER:
+------------------
+1. Truy cập http://localhost:3000/index_single.html
+2. Click "Bắt đầu chơi"
+3. Chọn lựa chọn cho 3 giai đoạn
+4. Xem kết quả
+
+
+================================================================================
+                        CẤU TRÚC THƯ MỤC
+================================================================================
+
+📁 Files chính:
+   server.js              - Backend với Socket.io
+   package.json           - Dependencies
+   
+   index.html             - Trang chủ (chọn vai trò)
+   admin.html/js          - Trang Admin
+   player.html/js         - Trang Player
+   
+   index_single.html      - Game single player
+   game.js                - Logic game gốc
+   styles.css             - CSS chung
+
+📁 Documentation:
+   README.md              - README gốc
+   README_VI.md           - Hướng dẫn tiếng Việt chi tiết
+   README_QUIZ.md         - README quiz system
+   START_HERE.md          - Bắt đầu nhanh
+   HUONG_DAN_SU_DUNG.txt  - File này
+
+
+================================================================================
+                            TÍNH NĂNG GAME
+================================================================================
+
+✨ ADMIN:
+   ✅ Tạo phòng và chia sẻ link
+   ✅ Theo dõi tất cả người chơi
+   ✅ Xem lựa chọn theo thời gian thực
+   ✅ Điều khiển flow game
+   ✅ Thống kê tiến trình
+
+✨ PLAYER:
+   ✅ Tham gia bằng link/mã phòng
+   ✅ Giao diện quiz thân thiện
+   ✅ Nhận câu hỏi realtime
+   ✅ Branch logic tự động (27 kịch bản)
+
+✨ GAME:
+   - 3 giai đoạn: Giá cả → Tiền lương → Tiền tệ
+   - Nhánh động: 27 kịch bản khác nhau
+   - Chủ đề: Cải cách kinh tế Việt Nam 1985
+
+
+================================================================================
+                          TROUBLESHOOTING
+================================================================================
+
+❌ Server không chạy?
+   → Kiểm tra port 3000 đã dùng chưa
+   → Chạy lại: npm install
+   → Xóa node_modules và cài lại
+
+❌ Người chơi không kết nối được?
+   → Admin phải tạo phòng trước
+   → Kiểm tra internet
+   → Refresh trang
+
+❌ Lỗi Socket.io?
+   → Đảm bảo server đang chạy
+   → Clear cache browser
+   → Kiểm tra firewall
+
+
+================================================================================
+                              CÔNG NGHỆ
+================================================================================
+
+Backend:
+   - Node.js
+   - Express
+   - Socket.io (realtime)
+
+Frontend:
+   - HTML5
+   - CSS3 (gradients, animations)
+   - JavaScript ES6+
+   - Socket.io Client
+
+
+================================================================================
+                           TEST NHANH
+================================================================================
+
+Cách test hệ thống với 1 máy:
+
+1. Mở 2 tab browser
+2. Tab 1: admin.html → Tạo phòng → Copy link
+3. Tab 2: Paste link → Nhập tên → Join
+4. Tab 1: Click "Bắt đầu game"
+5. Tab 2: Chọn đáp án
+6. Tab 1: Xem tiến trình
+
+
+================================================================================
+                            LIÊN HỆ
+================================================================================
+
+VNR Team 5
+Project: VNR_Team5_Game
+
+
+================================================================================
+                    CHÚC BẠN CHƠI GAME VUI VẺ! 🎮✨
+================================================================================
+

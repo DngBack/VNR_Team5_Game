@@ -3,159 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lý Cải cách Kinh tế Việt Nam 1985</title>
+    <title>Quiz Game - Trang chủ</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .home-container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .home-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .home-header h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .home-content {
+            padding: 60px 40px;
+        }
+
+        .role-selection {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .role-card {
+            background: white;
+            border: 3px solid #e0e0e0;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .role-card:hover {
+            border-color: #667eea;
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .role-card.admin {
+            border-color: #f5576c;
+        }
+
+        .role-card.admin:hover {
+            border-color: #f5576c;
+            box-shadow: 0 15px 40px rgba(245, 87, 108, 0.3);
+        }
+
+        .role-icon {
+            font-size: 5em;
+            margin-bottom: 20px;
+        }
+
+        .role-title {
+            font-size: 1.8em;
+            color: #667eea;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .role-card.admin .role-title {
+            color: #f5576c;
+        }
+
+        .role-description {
+            color: #666;
+            line-height: 1.6;
+            font-size: 1.1em;
+        }
+
+        .features {
+            margin-top: 60px;
+        }
+
+        .features h2 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .feature-text {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .quick-link {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .quick-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+
+        .quick-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>🎮 Quản lý Cải cách Kinh tế Việt Nam 1985</h1>
-            <p class="subtitle">Đưa ra các quyết định để ổn định kinh tế và cải thiện đời sống người dân</p>
-        </header>
-
-        <div id="game-area">
-            <!-- Nút bắt đầu game -->
-            <div id="start-screen" class="screen">
-                <div class="intro">
-                    <h2>📊 Tình hình ban đầu</h2>
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <span class="stat-label">Lạm phát</span>
-                            <span class="stat-value">200%</span>
-                        </div>
-                        <div class="stat-card">
-                            <span class="stat-label">Nguồn cung</span>
-                            <span class="stat-value">30/100</span>
-                        </div>
-                        <div class="stat-card">
-                            <span class="stat-label">Thu nhập thực tế</span>
-                            <span class="stat-value">20/100</span>
-                        </div>
-                        <div class="stat-card">
-                            <span class="stat-label">Niềm tin xã hội</span>
-                            <span class="stat-value">50/100</span>
-                        </div>
-                    </div>
-                    <p class="intro-text">Bạn là lãnh đạo Ủy ban Cải cách Kinh tế Việt Nam năm 1985. Đất nước đối mặt với khủng hoảng kinh tế nghiêm trọng. Hãy đưa ra quyết định để vực dậy nền kinh tế!</p>
-                </div>
-                <div class="button-group">
-                    <button id="start-btn" class="btn btn-primary">Bắt đầu chơi</button>
-                    <button id="show-all-btn" class="btn btn-secondary">Xem tất cả 27 kịch bản</button>
-                </div>
-            </div>
-
-            <!-- Màn hình chơi game -->
-            <div id="game-screen" class="screen hidden">
-                <!-- Progress bar showing stages -->
-                <div class="progress-container">
-                    <div class="progress-bar">
-                        <div class="progress-step active" data-stage="1">
-                            <div class="step-number">1</div>
-                            <div class="step-label">Giá cả</div>
-                        </div>
-                        <div class="progress-step" data-stage="2">
-                            <div class="step-number">2</div>
-                            <div class="step-label">Tiền lương</div>
-                        </div>
-                        <div class="progress-step" data-stage="3">
-                            <div class="step-number">3</div>
-                            <div class="step-label">Tiền tệ</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="current-stats">
-                    <h3>📈 Chỉ số hiện tại</h3>
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <span class="stat-label">Lạm phát</span>
-                            <span id="current-inflation" class="stat-value">200%</span>
-                        </div>
-                        <div class="stat-card">
-                            <span class="stat-label">Nguồn cung</span>
-                            <span id="current-supply" class="stat-value">30/100</span>
-                        </div>
-                        <div class="stat-card">
-                            <span class="stat-label">Thu nhập thực tế</span>
-                            <span id="current-income" class="stat-value">20/100</span>
-                        </div>
-                        <div class="stat-card">
-                            <span class="stat-label">Niềm tin xã hội</span>
-                            <span id="current-trust" class="stat-value">50/100</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="stage-section">
-                    <div class="stage-header">
-                        <h2 id="stage-title">Giai đoạn 1: Điều chỉnh giá cả</h2>
-                        <div class="stage-counter">
-                            <span id="stage-indicator" class="stage-badge">Giai đoạn 1/3</span>
-                        </div>
-                    </div>
-                    <p id="stage-description" class="stage-description"></p>
-                    <div id="choices-container" class="choices-container"></div>
-                </div>
-
-                <div id="feedback-section" class="feedback-section hidden">
-                    <h3>📝 Kết quả</h3>
-                    <div id="feedback-content"></div>
-                </div>
-
-                <div class="button-group">
-                    <button id="reset-btn" class="btn btn-secondary">Chơi lại</button>
-                    <button id="show-all-from-game-btn" class="btn btn-secondary">Xem tất cả kịch bản</button>
-                </div>
-            </div>
-
-            <!-- Màn hình kết quả -->
-            <div id="result-screen" class="screen hidden">
-                <h2 id="result-title">Kết quả cuối cùng</h2>
-                <div class="final-stats">
-                    <h3>📊 Chỉ số cuối cùng</h3>
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <span class="stat-label">Lạm phát</span>
-                            <span id="final-inflation" class="stat-value"></span>
-                        </div>
-                        <div class="stat-card">
-                            <span class="stat-label">Nguồn cung</span>
-                            <span id="final-supply" class="stat-value"></span>
-                        </div>
-                        <div class="stat-card">
-                            <span class="stat-label">Thu nhập thực tế</span>
-                            <span id="final-income" class="stat-value"></span>
-                        </div>
-                        <div class="stat-card">
-                            <span class="stat-label">Niềm tin xã hội</span>
-                            <span id="final-trust" class="stat-value"></span>
-                        </div>
-                    </div>
-                </div>
-                <div id="result-message" class="result-message"></div>
-                <div id="final-feedback" class="feedback-content"></div>
-                <div class="button-group">
-                    <button id="play-again-btn" class="btn btn-primary">Chơi lại</button>
-                    <button id="show-all-from-result-btn" class="btn btn-secondary">Xem tất cả kịch bản</button>
-                </div>
-            </div>
-
-            <!-- Màn hình xem tất cả kịch bản -->
-            <div id="all-scenarios-screen" class="screen hidden">
-                <h2>📚 Tất cả 27 kịch bản kết quả</h2>
-                <div id="all-scenarios-container" class="all-scenarios-container"></div>
-                <div class="button-group">
-                    <button id="back-to-start-btn" class="btn btn-primary">Quay lại màn hình chính</button>
-                </div>
-            </div>
+    <div class="home-container">
+        <div class="home-header">
+            <h1>🎮 Quiz Game</h1>
+            <p class="subtitle">Quản lý Cải cách Kinh tế Việt Nam 1985</p>
+            <p style="margin-top: 20px; opacity: 0.9;">Chọn vai trò của bạn để bắt đầu</p>
         </div>
 
-        <footer>
-            <p>Dựa trên sự kiện lịch sử Việt Nam năm 1985 - Bài học về tầm quan trọng của cải cách đồng bộ</p>
-        </footer>
-    </div>
+        <div class="home-content">
+            <div class="role-selection">
+                <div class="role-card admin" onclick="window.location.href='/admin.html'">
+                    <div class="role-icon">👑</div>
+                    <div class="role-title">Admin / Host</div>
+                    <div class="role-description">
+                        Tạo phòng chơi, chia sẻ link, theo dõi tiến trình và lựa chọn của người chơi trong thời gian thực
+                    </div>
+                </div>
 
-    <script src="game.js"></script>
+                <div class="role-card" onclick="window.location.href='/player.html'">
+                    <div class="role-icon">👤</div>
+                    <div class="role-title">Người chơi</div>
+                    <div class="role-description">
+                        Tham gia phòng chơi bằng mã phòng, trả lời các câu hỏi và đưa ra quyết định
+                    </div>
+                </div>
+            </div>
+
+            <div class="features">
+                <h2>✨ Tính năng</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">🌐</div>
+                        <div class="feature-title">Realtime</div>
+                        <div class="feature-text">Đồng bộ theo thời gian thực</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">📊</div>
+                        <div class="feature-title">Theo dõi</div>
+                        <div class="feature-text">Xem tiến trình người chơi</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🎯</div>
+                        <div class="feature-title">27 Kịch bản</div>
+                        <div class="feature-text">Nhiều lựa chọn khác nhau</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🎨</div>
+                        <div class="feature-title">Giao diện đẹp</div>
+                        <div class="feature-text">UI hiện đại và thân thiện</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quick-link">
+                <a href="/index_single.html">🎮 Hoặc chơi single player tại đây</a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
-

@@ -46,7 +46,7 @@ const gameData = {
     stage2: {
         "1.1": {
             title: "Giai đoạn 2: Điều chỉnh tiền lương",
-            description: "Với lạm phát cao và nguồn cung thấp, bạn cần cân nhắc cẩn thận việc điều chỉnh lương.",
+            description: "Lạm phát tăng vọt lên 350%, hàng hóa biến mất, lương chỉ mua được 15% nhu cầu. Người dân gửi thư phàn nàn khắp nơi. Bạn – lãnh đạo Ủy ban Cải cách – cần quyết định cách xử lý tiền lương trước khi tình hình trở nên tồi tệ hơn.",
             choices: [
                 {
                     text: "Tăng lương 20% để bù giá",
@@ -79,7 +79,7 @@ const gameData = {
         },
         "1.2": {
             title: "Giai đoạn 2: Điều chỉnh tiền lương",
-            description: "Với nguồn cung đã được cải thiện, bạn có nhiều lựa chọn hơn về điều chỉnh lương.",
+            description: "Lạm phát ổn định ở mức 200%, sản xuất đã tăng nhẹ. Lương vẫn thấp, nhưng người dân thấy nhiều hàng hóa hơn trong các cửa hàng. Bạn chọn cách nào để xử lý tiền lương?",
             choices: [
                 {
                     text: "Tăng lương 20% dựa trên năng suất",
@@ -112,7 +112,7 @@ const gameData = {
         },
         "1.3": {
             title: "Giai đoạn 2: Điều chỉnh tiền lương",
-            description: "Với triển vọng kinh tế tích cực, bạn có cơ hội củng cố cải cách.",
+            description: "Giá cả tự do, hàng hóa tăng, lạm phát giảm xuống còn 150%. Người dân bắt đầu tin tưởng. Bạn chọn cách nào để củng cố và tiếp tục cải cách?",
             choices: [
                 {
                     text: "Tăng lương dựa trên năng suất và hiệu quả quản lý",
@@ -147,7 +147,7 @@ const gameData = {
     stage3: {
         "1.1-2.1": {
             title: "Giai đoạn 3: Chính sách tiền tệ",
-            description: "Với lạm phát phi mã, cần quyết định quyết liệt về chính sách tiền tệ.",
+            description: "Lạm phát đã vượt 500%, hàng hóa chỉ còn 20%, người dân xếp hàng từ 3 giờ sáng nhưng trở về tay không. Lương 67 đồng không mua nổi 1kg gạo. Doanh nghiệp tê liệt, ngân sách cạn kiệt. Bộ Chính trị yêu cầu hành động KHẨN CẤP. Bạn – Thống đốc Ngân hàng Nhà nước – chọn chính sách tiền tệ nào?",
             choices: [
                 {
                     text: "In tiền, đổi tiền 1:10",
@@ -183,7 +183,7 @@ const gameData = {
         },
         "1.1-2.2": {
             title: "Giai đoạn 3: Chính sách tiền tệ",
-            description: "Với nguồn cung thấp và niềm tin xã hội giảm, cần cân nhắc cẩn thận.",
+            description: "Lạm phát 300%, hàng hóa chỉ còn 15%, chợ đen tràn lan, lương 56 đồng không mua nổi nhu yếu phẩm. Dân gửi thư phàn nàn khắp nơi. Bạn phải cứu vãn trước khi mất kiểm soát hoàn toàn. Chọn chính sách tiền tệ nào?",
             choices: [
                 {
                     text: "In tiền, đổi tiền 1:10",
@@ -219,7 +219,7 @@ const gameData = {
         },
         "1.1-2.3": {
             title: "Giai đoạn 3: Chính sách tiền tệ",
-            description: "Với nỗ lực cải thiện sản xuất, cần chính sách tiền tệ phù hợp.",
+            description: "Lạm phát 400%, sản xuất bắt đầu tăng nhẹ (30%), nhưng dân vẫn khổ vì lương chưa đủ sống. Doanh nghiệp nhà nước kêu gọi hỗ trợ. Bạn chọn cách nào để không làm tình hình tệ hơn?",
             choices: [
                 {
                     text: "In tiền, đổi tiền 1:10",
@@ -255,7 +255,7 @@ const gameData = {
         },
         "1.2-2.1": {
             title: "Giai đoạn 3: Chính sách tiền tệ",
-            description: "Với nền tảng tốt, cần quyết định về cung tiền.",
+            description: "Lạm phát 250%, sản xuất tăng (45%), lương bắt đầu đủ sống hơn. Dân lạc quan, nhưng ngân sách căng thẳng. Bạn chọn cách củng cố hay mạo hiểm thêm?",
             choices: [
                 {
                     text: "In tiền để hỗ trợ lương",
@@ -291,7 +291,7 @@ const gameData = {
         },
         "1.2-2.2": {
             title: "Giai đoạn 3: Chính sách tiền tệ",
-            description: "Với triển vọng kinh tế tích cực, cần hoàn thiện cải cách.",
+            description: "Lạm phát 180%, tư nhân bắt đầu sản xuất (50% hàng hóa), nhưng lương vẫn thấp. Dân tin tưởng triển vọng. Bạn chọn cách đẩy mạnh hay an toàn?",
             choices: [
                 {
                     text: "In tiền để tăng lương 10%",
@@ -327,7 +327,7 @@ const gameData = {
         },
         "1.2-2.3": {
             title: "Giai đoạn 3: Chính sách tiền tệ",
-            description: "Với cơ sở kinh tế ổn định, cần quyết định cuối cùng.",
+            description: "Lạm phát 220%, phân phối tốt hơn (45%), lương tăng nhẹ. Dân thấy hàng hóa đều hơn. Bạn chọn cách duy trì đà tăng trưởng ra sao?",
             choices: [
                 {
                     text: "In tiền để tăng lương",
@@ -363,7 +363,7 @@ const gameData = {
         },
         "1.3-2.1": {
             title: "Giai đoạn 3: Chính sách tiền tệ",
-            description: "Với đời sống cải thiện, cần hoàn thiện cải cách.",
+            description: "Lạm phát chỉ 180%, hàng hóa dồi dào (55%), lương đủ sống, dân tin tưởng cao. Đây là cơ hội vàng để hoàn tất Đổi mới. Bạn chọn cách nào?",
             choices: [
                 {
                     text: "In tiền để tăng lương 10%",
@@ -399,7 +399,7 @@ const gameData = {
         },
         "1.3-2.2": {
             title: "Giai đoạn 3: Chính sách tiền tệ",
-            description: "Với mức độ lo ngại về lạm phát, cần chính sách phù hợp.",
+            description: "Lạm phát tăng lại 250% do bù lương không dựa trên năng suất, hàng hóa ổn định (50%). Dân lo ngại lạm phát quay lại. Bạn chọn cách khắc phục?",
             choices: [
                 {
                     text: "In tiền để hỗ trợ lương",
@@ -435,7 +435,7 @@ const gameData = {
         },
         "1.3-2.3": {
             title: "Giai đoạn 3: Chính sách tiền tệ",
-            description: "Với triển vọng kinh tế tốt, cần quyết định cuối cùng.",
+            description: "Lạm phát thấp nhất 140%, hàng hóa dồi dào (60%), cơ chế thị trường đang hình thành. Dân chờ lương tăng. Bạn chọn cách hoàn thiện cải cách?",
             choices: [
                 {
                     text: "In tiền để tăng lương 10%",

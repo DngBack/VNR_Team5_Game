@@ -166,12 +166,48 @@ function displayProgress(progressData) {
     let html = '<div class="players-list">';
     
     progressData.forEach(player => {
+        const answeredCount = player.answers.filter(a => a !== null && a !== undefined).length;
+        
+        // Show all choices and outputs for this player
+        let allChoicesHtml = '';
+        if (player.answers.length > 0) {
+            allChoicesHtml = '<div style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px;">';
+            allChoicesHtml += '<strong style="display: block; margin-bottom: 10px;">📝 Tất cả lựa chọn:</strong>';
+            
+            player.answers.forEach((answerId, index) => {
+                if (answerId) {
+                    const choice = getChoiceData(answerId, index + 1, player.answers);
+                    if (choice) {
+                        allChoicesHtml += `
+                            <div style="margin-bottom: 12px; padding: 10px; background: white; border-left: 3px solid #667eea; border-radius: 5px;">
+                                <strong>Giai đoạn ${index + 1}:</strong> ${choice.text}
+                                ${choice.inflation !== undefined ? `
+                                    <div style="margin-top: 6px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; font-size: 0.85em;">
+                                        <span>💹 Lạm phát: <strong>${choice.inflation}%</strong></span>
+                                        <span>📦 Nguồn cung: <strong>${choice.supply}/100</strong></span>
+                                        <span>💰 Thu nhập: <strong>${choice.income}/100</strong></span>
+                                        <span>🤝 Niềm tin: <strong>${choice.trust}/100</strong></span>
+                                    </div>
+                                    <div style="margin-top: 6px; font-style: italic; font-size: 0.85em; color: #666;">
+                                        💬 ${choice.feedback}
+                                    </div>
+                                ` : ''}
+                            </div>
+                        `;
+                    }
+                }
+            });
+            
+            allChoicesHtml += '</div>';
+        }
+        
         html += `
             <div class="player-card">
                 <div class="player-name">${player.name}</div>
                 <div class="player-progress">
                     <div><strong>Giai đoạn:</strong> ${player.stage}/${totalStages}</div>
-                    <div><strong>Đã trả lời:</strong> ${player.answers.filter(a => a !== null && a !== undefined).length}/${totalStages}</div>
+                    <div><strong>Đã trả lời:</strong> ${answeredCount}/${totalStages}</div>
+                    ${allChoicesHtml}
                 </div>
             </div>
         `;
@@ -194,6 +230,38 @@ function updatePlayersList() {
         const answeredCount = player.answers.filter(a => a !== null && a !== undefined).length;
         const status = player.currentStage > answeredCount ? '✅ Đang chờ' : '⏳ Chờ câu tiếp theo';
         
+        // Get and display latest choice with stats
+        let latestChoiceHtml = '';
+        let latestStats = null;
+        
+        if (player.answers.length > 0) {
+            const lastAnswerId = player.answers[answeredCount - 1];
+            const stageNum = answeredCount;
+            const lastChoice = getChoiceData(lastAnswerId, stageNum, player.answers);
+            
+            if (lastChoice) {
+                latestChoiceHtml = `
+                    <div style="margin-top: 15px; padding: 10px; background: #f0f0f0; border-radius: 8px; font-size: 0.9em;">
+                        <strong>Lựa chọn:</strong> ${lastChoice.text}
+                        ${lastChoice.inflation !== undefined ? `
+                            <div style="margin-top: 8px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; font-size: 0.85em;">
+                                <span>💹 Lạm phát: <strong>${lastChoice.inflation}%</strong></span>
+                                <span>📦 Nguồn cung: <strong>${lastChoice.supply}/100</strong></span>
+                                <span>💰 Thu nhập: <strong>${lastChoice.income}/100</strong></span>
+                                <span>🤝 Niềm tin: <strong>${lastChoice.trust}/100</strong></span>
+                            </div>
+                            ${lastChoice.feedback ? `
+                                <div style="margin-top: 6px; font-style: italic; font-size: 0.85em; color: #666;">
+                                    💬 ${lastChoice.feedback}
+                                </div>
+                            ` : ''}
+                        ` : ''}
+                    </div>
+                `;
+                latestStats = lastChoice;
+            }
+        }
+        
         html += `
             <div class="player-card">
                 <div class="player-name">${player.name}</div>
@@ -201,12 +269,42 @@ function updatePlayersList() {
                     <div><strong>Giai đoạn:</strong> ${player.currentStage}/${totalStages}</div>
                     <div><strong>Đã trả lời:</strong> ${answeredCount}/${totalStages}</div>
                     <div style="margin-top: 10px; color: ${player.currentStage > answeredCount ? '#00b894' : '#636e72'};">${status}</div>
+                    ${latestChoiceHtml}
                 </div>
             </div>
         `;
     });
     
     elements.playersList.innerHTML = html;
+}
+
+// Helper to get choice data with stats from gameData
+function getChoiceData(choiceId, stage, playerAnswers = []) {
+    if (!gameData) return null;
+    
+    let questionData;
+    
+    if (stage === 1) {
+        questionData = gameData.stage1;
+    } else if (stage === 2) {
+        // Get the branch based on stage 1 answer
+        const stage1Answer = playerAnswers[0];
+        if (!stage1Answer) return null;
+        questionData = gameData.stage2[stage1Answer];
+    } else if (stage === 3) {
+        // Get the branch based on stage 1 and 2 answers
+        const stage1Answer = playerAnswers[0];
+        const stage2Answer = playerAnswers[1];
+        if (!stage1Answer || !stage2Answer) return null;
+        const pathKey = `${stage1Answer}-${stage2Answer}`;
+        questionData = gameData.stage3[pathKey];
+    }
+    
+    if (!questionData || !questionData.choices) {
+        return null;
+    }
+    
+    return questionData.choices.find(c => c.id === choiceId);
 }
 
 function updateStageStats() {

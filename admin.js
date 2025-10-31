@@ -14,7 +14,9 @@ const elements = {
     createRoomBtn: document.getElementById('create-room-btn'),
     startGameBtn: document.getElementById('start-game-btn'),
     nextStageBtn: document.getElementById('next-stage-btn'),
+    endGameBtn: document.getElementById('end-game-btn'),
     showProgressBtn: document.getElementById('show-progress-btn'),
+    restartRoomBtn: document.getElementById('restart-room-btn'),
     roomCodeDisplay: document.getElementById('room-code-display'),
     shareLink: document.getElementById('share-link'),
     playersList: document.getElementById('players-list'),
@@ -36,7 +38,9 @@ const stageData = {
 elements.createRoomBtn.addEventListener('click', createRoom);
 elements.startGameBtn.addEventListener('click', startGame);
 elements.nextStageBtn.addEventListener('click', sendNextQuestion);
+elements.endGameBtn.addEventListener('click', endGame);
 elements.showProgressBtn.addEventListener('click', showProgress);
+elements.restartRoomBtn.addEventListener('click', restartRoom);
 
 // Socket event listeners
 socket.on('room-created', (data) => {
@@ -124,6 +128,7 @@ function startGame() {
     socket.emit('start-game', { roomCode: currentRoomCode });
     elements.startGameBtn.disabled = true;
     elements.nextStageBtn.disabled = false;
+    elements.endGameBtn.disabled = false;
     elements.stageControl.classList.remove('hidden');
     
     // Send first question
@@ -135,7 +140,43 @@ function sendNextQuestion() {
         currentStage++;
         sendQuestion(currentStage);
     } else {
-        showNotification('Đã hết các câu hỏi!', 'success');
+        showNotification('Đã hết các câu hỏi! Nhấn "Kết thúc game" để kết thúc.', 'success');
+        elements.nextStageBtn.disabled = true;
+    }
+}
+
+function endGame() {
+    socket.emit('end-game', { roomCode: currentRoomCode });
+    elements.endGameBtn.disabled = true;
+    elements.nextStageBtn.disabled = true;
+    showNotification('Game đã kết thúc!', 'success');
+}
+
+function restartRoom() {
+    if (confirm('Bạn có chắc muốn tạo phòng mới? Phòng hiện tại sẽ bị xóa và tất cả người chơi sẽ bị disconnect.')) {
+        // Reset state
+        players.clear();
+        currentStage = 1;
+        currentRoomCode = null;
+        
+        // Hide all game-related sections
+        elements.roomControl.classList.add('hidden');
+        elements.playersSection.classList.add('hidden');
+        elements.stageControl.classList.add('hidden');
+        elements.progressDisplay.classList.add('hidden');
+        
+        // Show room creation
+        elements.roomCreation.classList.remove('hidden');
+        
+        // Enable create button
+        elements.createRoomBtn.disabled = false;
+        elements.createRoomBtn.textContent = 'Tạo phòng mới';
+        
+        // Clean up display
+        elements.roomCodeDisplay.textContent = '---';
+        elements.shareLink.value = '';
+        
+        showNotification('Đã reset. Bạn có thể tạo phòng mới.', 'success');
     }
 }
 

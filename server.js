@@ -160,6 +160,19 @@ io.on('connection', (socket) => {
         socket.emit('progress-data', { progress });
     });
 
+    // Admin ends the game
+    socket.on('end-game', (data) => {
+        const { roomCode } = data;
+        const room = rooms.get(roomCode);
+        
+        if (!room || socket.id !== room.adminId) {
+            return;
+        }
+        
+        io.to(roomCode).emit('game-ended');
+        console.log(`Game ended in room ${roomCode}`);
+    });
+
     // Disconnect handling
     socket.on('disconnect', () => {
         console.log('Client disconnected:', socket.id);

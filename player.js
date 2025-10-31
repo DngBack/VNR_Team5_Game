@@ -59,6 +59,11 @@ socket.on('admin-left', () => {
     `;
 });
 
+socket.on('game-ended', () => {
+    elements.gameArea.classList.remove('active');
+    elements.completedScreen.classList.remove('hidden');
+});
+
 // Functions
 function joinRoom() {
     const name = elements.playerNameInput.value.trim();
@@ -183,13 +188,7 @@ function submitAnswer() {
     // Disable submit button
     elements.submitBtn.disabled = true;
     
-    // If last stage, show completed screen after a delay
-    if (currentStage === 3) {
-        setTimeout(() => {
-            elements.gameArea.classList.remove('active');
-            elements.completedScreen.classList.remove('hidden');
-        }, 3000);
-    }
+    // Don't auto-show completed screen - wait for admin to end game
 }
 
 // Get full choice data with stats from gameData
